@@ -1,5 +1,8 @@
 # aw10-final
 
+项目本身采用WebFlux进行响应式编程，实现了products，carts，orders服务，
+由于使用了Spring-Cloud Discovery，扩展只需要多开几个服务的实例即可。
+
 Please develop a **fully functional** online purchase order system.
 
 - It should have a superb collection of goods merchandises
@@ -14,5 +17,3 @@ The system should be of a **reactive architecture**, which means it should be
 - Message Driven: it should has loosely coupled components that communicates with each other asynchronously.
 
 Please design tests/experiements to demostrate that your system fulfills such requirements as stated in [The Reactive Manifesto](https://www.reactivemanifesto.org)
-
-**Submit your codes/documents/tests/experiements of your system.**
