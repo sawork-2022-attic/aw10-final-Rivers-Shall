@@ -1,19 +1,29 @@
 package com.micropos.product.model;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.io.Serializable;
 
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product implements Serializable {
-    private String id;
-    private String name;
-    private double price;
-    private String image;
 
-    public Product(String id, String name, double price, String image) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.image = image;
-    }
+    @Id
+    private String id;
+
+    @Column(name = "title")
+    private String name;
+
+    private double price;
+
+    @Transient
+    private String image;
 
     public String getId() {
         return id;

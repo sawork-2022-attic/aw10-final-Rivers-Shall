@@ -18,16 +18,19 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Flux<Product> products() {
-        return Flux.fromIterable(productRepository.allProducts());
+        return Flux.fromIterable(productRepository.findAll());
     }
 
     @Override
     public Mono<Product> getProduct(String id) {
-        Product product = productRepository.findProduct(id);
-        if (product == null) {
-            return Mono.empty();
-        }
-        return Mono.just(product);
+        return productRepository.findById(id)
+                .map(Mono::just)
+                .orElseGet(Mono::empty);
+    }
+
+    @Override
+    public Flux<Product> searchProductByText(String searchText) {
+        return Flux.fromIterable(productRepository.findAllByNameContains(searchText));
     }
 
     @Override

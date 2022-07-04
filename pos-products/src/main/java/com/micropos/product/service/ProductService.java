@@ -11,5 +11,7 @@ public interface ProductService {
 
     public Mono<Product> getProduct(String id);
 
+    public Flux<Product> searchProductByText(String searchText);
+
     public Product randomProduct();
 }

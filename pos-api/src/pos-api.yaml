@@ -252,6 +252,32 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+  /products/search/{searchText}:
+    get:
+      summary: Search a list of products
+      operationId: searchProducts
+      tags:
+        - products
+      parameters:
+        - name: searchText
+          in: path
+          required: true
+          description: The text for searching
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A paged array of products
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Products"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
   /counter/checkout:
     post:
       summary: checkout a cart

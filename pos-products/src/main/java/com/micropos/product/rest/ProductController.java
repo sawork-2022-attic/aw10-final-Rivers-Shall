@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("api")
 public class ProductController implements ProductsApi {
 
     private final ProductMapper productMapper;
@@ -40,5 +39,11 @@ public class ProductController implements ProductsApi {
                 .map(productMapper::toProductDto)
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
+    }
+
+    @Override
+    public Mono<ResponseEntity<Flux<ProductDto>>> searchProducts(String searchText, ServerWebExchange exchange) {
+        return Mono.just(ResponseEntity.ok(productService.searchProductByText(searchText)
+                .map(productMapper::toProductDto)));
     }
 }
